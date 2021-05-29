@@ -128,15 +128,7 @@ print("Arvore de Decisao: ", round(scores_arvore.mean(),3),round(scores_arvore.s
 print("Random Forest: ", round(scores.mean(),3),round(scores.std(),3))
 print("MLP: ", round(scores_mlp.mean(),3),round(scores_mlp.std(),3))
 
-# Alguns gráficos para visualização dos dados
-#verificando ocorrências das classes
-plt.hist(dados['diagnosis'])
-plt.xlabel('Classes')
-plt.ylabel('Quantidade')
-plt.title('Ocorrências das Classes')
-plt.grid(True)
-plt.show()
-
+# Gráfico para visualização dos dados
 # correlaçao entre os atributos
 corr = dados.corr()
 print(corr)
