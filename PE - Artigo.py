@@ -1,9 +1,10 @@
 # Importando bibliotecas
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # lendo csv e armazenando em um dataframe
-dados = pd.read_csv('PE - Artigo\data.csv')
+dados = pd.read_csv('data.csv')
 print(dados.head())
 
 #verificar se existem valores NAN, ? ou dados faltantes
@@ -99,7 +100,7 @@ classificador = MLPClassifier(hidden_layer_sizes=(100),activation='logistic',max
 scores = cross_val_score(classificador,X,y,cv=10)
 print(scores)
 
-print(round(scores.mean(),3),round(scores.std(),3))
+print("Score da validacao cruzada: ", round(scores.mean(),3),round(scores.std(),3))
 
 # Comparando MLP com Árvore de Decisão e Random Forest
 from sklearn.tree import DecisionTreeClassifier
@@ -126,3 +127,20 @@ scores_mlp = cross_val_score(mlp,X,y,cv=10)
 print("Arvore de Decisao: ", round(scores_arvore.mean(),3),round(scores_arvore.std(),3))
 print("Random Forest: ", round(scores.mean(),3),round(scores.std(),3))
 print("MLP: ", round(scores_mlp.mean(),3),round(scores_mlp.std(),3))
+
+# Alguns gráficos para visualização dos dados
+#verificando ocorrências das classes
+plt.hist(dados['diagnosis'])
+plt.xlabel('Classes')
+plt.ylabel('Quantidade')
+plt.title('Ocorrências das Classes')
+plt.grid(True)
+plt.show()
+
+# correlaçao entre os atributos
+corr = dados.corr()
+print(corr)
+
+#plotando coeficientes de correlação em um mapa de calor
+sns.heatmap(corr,vmin=-1, vmax=1, center=0,cmap=sns.diverging_palette(20, 220, n=200))
+plt.show()
