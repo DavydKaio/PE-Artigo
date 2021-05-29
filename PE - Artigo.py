@@ -136,3 +136,19 @@ print(corr)
 #plotando coeficientes de correlação em um mapa de calor
 sns.heatmap(corr,vmin=-1, vmax=1, center=0,cmap=sns.diverging_palette(20, 220, n=200))
 plt.show()
+
+#criando dataframe apenas para os nodulos benignos
+benigno = dados[dados['diagnosis']==0].drop(columns=['diagnosis']).reset_index(drop=True)
+
+#criando dataframe apenas para os nodulos benignos
+maligno = dados[dados['diagnosis']==1].drop(columns=['diagnosis']).reset_index(drop=True)
+
+#plotando boxplots dos dados das instâncias benignas
+benigno.boxplot()
+plt.title('Box plot dos atributos dos nódulos benignos')
+plt.show()
+
+#plotando boxplots dos dados das instâncias malignas
+maligno.boxplot()
+plt.title('Box plot dos atributos dos nódulos malignos')
+plt.show()
